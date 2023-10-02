@@ -1,13 +1,11 @@
-const Lab = ({
-  item,
-}: {
-  item: { title: string; id: number; bomb: boolean };
-}) => {
-  return (
-    <div className="w-20 h-20 rounded-full bg-cyan-300  text-slate-700 text-lg flex justify-center items-center">
-      {item.title}
-    </div>
-  );
-};
+import { BoardItem } from '../lib/generateData'
 
-export default Lab;
+const Lab = ({ item }: { item: BoardItem }) => {
+	return (
+		<div className='w-20 h-20 rounded-full bg-secondary text-main text-lg flex justify-center items-center shadow-default active:shadow-active cursor-pointer transition-shadow'>
+			{item.title}
+		</div>
+	)
+}
+
+export default Lab

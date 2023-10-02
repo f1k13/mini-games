@@ -1,12 +1,11 @@
-import GameBoard from "@/widgets/game-board/game-board";
-
+import GameBoard from '@/widgets/game-board/ui/game-board'
 
 const GamePage = () => {
-  return (
-    <div className="flex items-center justify-center">
-      <GameBoard />
-    </div>
-  );
-};
+	return (
+		<div className='flex items-center justify-center'>
+			<GameBoard />
+		</div>
+	)
+}
 
-export default GamePage;
+export default GamePage
