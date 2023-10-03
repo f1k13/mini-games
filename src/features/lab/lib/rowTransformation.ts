@@ -21,6 +21,5 @@ export const rowTransformation = (data: BoardData[]) => {
     })),
   }));
 
-  console.log(remainingRows);
   return [newRow, ...transformedRows];
 };

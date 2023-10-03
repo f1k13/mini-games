@@ -1,6 +1,6 @@
 export type BoardItem = {
   id: number;
-  title: string;
+  title: number;
   bomb: boolean;
 };
 
@@ -12,19 +12,19 @@ export type BoardData = {
 
 export const generateData = () => {
   const data: BoardData[] = [];
-
   // Generate lines
   for (let lineId = 2; lineId <= 6; lineId++) {
     const lineArr = [];
 
-    // Generate items in a line
     for (let itemId = 0; itemId < 5; itemId++) {
-      const isBomb = itemId > 3;
+      const randomNumber = Math.random();
+      const randomBomb = lineId / 5;
+
+      const isBomb = randomNumber <= randomBomb ? true : false;
       const item = { id: itemId, title: lineId, bomb: isBomb };
       lineArr.push(item);
     }
 
-    // Create line object
     const line = { id: lineId, modifier: lineId, items: lineArr };
     data.push(line);
   }

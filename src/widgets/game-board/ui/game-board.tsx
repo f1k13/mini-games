@@ -8,7 +8,7 @@ const GameBoard = () => {
   const data = useStore($board);
 
   return (
-    <>
+    <div className="flex flex-col">
       <div className="w-full p-20 flex justify-center flex-col-reverse items-center">
         {data.map((item) => (
           <div className="flex gap-20 mt-10" key={item.id}>
@@ -18,8 +18,13 @@ const GameBoard = () => {
           </div>
         ))}
       </div>
-      <button onClick={() => setBoard(generateData())}>KEKEKK</button>
-    </>
+      <button
+        className="p-4 bg-secondary rounded-lg text-xl "
+        onClick={() => setBoard(generateData())}
+      >
+        Start
+      </button>
+    </div>
   );
 };
 
