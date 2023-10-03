@@ -1,1 +1,1 @@
-export { default as Lab } from "./lab";
+export { default as Lap } from "./lap";

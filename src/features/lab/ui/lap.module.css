@@ -1,0 +1,45 @@
+.root {
+  background: #7471f0;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  font-size: 20px;
+  text-transform: uppercase;
+  transform-style: preserve-3d;
+  transition: transform 0.15s, box-shadow 0.15s;
+  cursor: pointer;
+  user-select: none;
+}
+.root:before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #3f3e74;
+  border-radius: inherit;
+  transform: translate3d(0, 0.75em, -1em);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.root:hover {
+  background: #8471f0;
+  transform: translate(0, 0.25em);
+}
+.root:hover::before {
+
+  transform: translate3d(0, 0.5em, -1em);
+}
+.root:active {
+  background: #8471f0;
+  transform: translate(0em, 0.75em);
+}
+.root:active::before {
+  box-shadow: 0 0 0 2px #3f3e74, 0 0 #3f3e74;
+  transform: translate3d(0, 0, -0.2em);
+}

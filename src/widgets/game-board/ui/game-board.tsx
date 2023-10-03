@@ -1,5 +1,6 @@
 import { generateData } from "@/features/lab/lib/generateData";
-import Lab from "@/features/lab/ui/lab";
+import { Lap } from "@/features/lab/ui";
+
 import { useCallback } from "react";
 
 const GameBoard = () => {
@@ -9,7 +10,7 @@ const GameBoard = () => {
       {data().map((item) => (
         <div className="flex gap-20 mt-10" key={item.id}>
           {item.items.map((item) => (
-            <Lab item={item} key={item.id} />
+            <Lap item={item} key={item.id} />
           ))}
         </div>
       ))}
