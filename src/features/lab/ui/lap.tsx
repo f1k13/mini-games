@@ -1,17 +1,14 @@
-import { rowAnimation } from "../lib";
 import { BoardItem } from "../lib/generateData";
 import styles from "./lap.module.css";
+import { transformBoard } from "@/widgets/game-board/model/boardEvents.ts";
 const Lap = ({ item }: { item: BoardItem }) => {
-  // useEffect(() => {
-  //   rowAnimation();
-  // });
-  const setPosition = () => {
-    console.log(rowAnimation());
+  const handleClick = () => {
+    transformBoard();
   };
 
   return (
-    <div onClick={() => setPosition()} className={styles.root}>
-      {item.title}
+    <div onClick={handleClick} className={styles.root}>
+      x{item.title}
     </div>
   );
 };

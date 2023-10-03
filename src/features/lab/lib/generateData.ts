@@ -13,15 +13,21 @@ export type BoardData = {
 export const generateData = () => {
   const data: BoardData[] = [];
 
-  for (let i = 1; i <= 5; i++) {
+  // Generate lines
+  for (let lineId = 2; lineId <= 6; lineId++) {
     const lineArr = [];
 
-    for (let j = 0; j < 5; j++) {
-      const item = { id: j, title: `x${i}`, bomb: j > 3 ? true : false };
+    // Generate items in a line
+    for (let itemId = 0; itemId < 5; itemId++) {
+      const isBomb = itemId > 3;
+      const item = { id: itemId, title: lineId, bomb: isBomb };
       lineArr.push(item);
     }
-    const line = { id: i, modifier: i, items: lineArr };
+
+    // Create line object
+    const line = { id: lineId, modifier: lineId, items: lineArr };
     data.push(line);
   }
+
   return data;
 };
