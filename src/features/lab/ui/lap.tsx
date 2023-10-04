@@ -4,7 +4,6 @@ import { transformBoard } from "@/widgets/game-board/model/boardEvents.ts";
 const Lap = ({ item }: { item: BoardItem }) => {
   const handleClick = () => {
     transformBoard();
-    
   };
 
   return (
