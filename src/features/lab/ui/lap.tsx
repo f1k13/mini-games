@@ -9,6 +9,7 @@ const Lap = ({ item }: { item: BoardItem }) => {
   return (
     <div onClick={handleClick} className={styles.root}>
       x{item.title}
+      {item.bomb ? "💣" : ""}
     </div>
   );
 };
