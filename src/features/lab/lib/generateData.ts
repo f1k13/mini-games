@@ -29,6 +29,7 @@ export const generateData = () => {
       const item = { id: itemId, title: lineId, bomb: bombs.includes(itemId) };
       lineArr.push(item);
     }
+    
     const line = { id: lineId, modifier: lineId, items: lineArr };
     data.push(line);
   }

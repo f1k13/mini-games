@@ -5,8 +5,9 @@ export default {
     colors: {
       main: "#1E1E1E",
       secondary: "#7471F0",
-      bgModal: '#7471F0',
+      bgModal: "#7471F0",
       secondaryHover: "#8471f0",
+      textColor: "#fff",
     },
     extend: {
       boxShadow: {
