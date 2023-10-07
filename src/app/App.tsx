@@ -37,7 +37,7 @@ const App = () => {
           Войти
         </button>
       )}
-      {open && (
+      {!open && (
         <Modal active={open} setActive={isOpen}>
           <form className="flex flex-col" action="">
             <TextField
