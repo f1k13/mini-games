@@ -12,23 +12,21 @@ import { $virtualBalance } from "@/entities/virtual-balance/model/virtual-balanc
 import { changeUserBalanceFx } from "@/entities/user/lib/userEffects";
 import { $user } from "@/entities/user/model/user";
 import { Modal } from "@/shared/ui/modal";
-import { $game } from "@/entities/game/model/game";
 import {
   setGameStateDefault,
   setGameStateInGame,
 } from "@/entities/game/lib/gameEvents";
+import { GameController } from "@/features/game-controller";
 
 const GameBoard = () => {
   const data = useStore($board);
+  const user = useStore($user);
+  const virtualBalance = useStore($virtualBalance);
   const [value, setValue] = useState<string>("");
   const [isOpen, setIsOpen] = useState(false);
-  const virtualBalance = useStore($virtualBalance);
-  const gameState = useStore($game);
+  const [bombOpen, setBombOpen] = useState(false);
 
-  
-  const user = useStore($user);
-
-  const setRate = (e) => {
+  const setRate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setValue(value);
     if (user) {
@@ -38,7 +36,6 @@ const GameBoard = () => {
         setGameStateInGame();
       } else {
         setVirtualBalance(Number(value));
-        
       }
     }
   };
@@ -62,42 +59,19 @@ const GameBoard = () => {
         {data.map((item) => (
           <div className="flex gap-20 mt-10" key={item.id}>
             {item.items.map((item) => (
-              <Lap rate={Number(value)} item={item} key={item.id} />
+              <Lap setBombOpen={setBombOpen} rate={Number(value)} item={item} key={item.id} />
             ))}
           </div>
         ))}
-        <div className="flex items-center ">
-          <div className="flex flex-col justify-between mr-20 h-full">
-            <span className="text-1xl bg-secondary flex justify-center items-center px-2 py-2 rounded-xl ">
-              Возможный выигрыш {virtualBalance}
-            </span>
-            <button
-              disabled={gameState === "inGame"}
-              onClick={takeRate}
-              className="bg-secondary mt-5 p-2 rounded-xl text-main hover:bg-secondaryHover transition ease-in-out delay-250 text-color outline-none text-1xl"
-            >
-              Забрать ставку
-            </button>
-          </div>
-          <form className="flex flex-col">
-            <input
-              disabled={gameState === "inGame"}
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-              type="number"
-              placeholder="Поставить ставку"
-              className="bg-secondary p-2 rounded-xl text-main focus:bg-secondary border border-main transition ease-in-out delay-250 text-color outline-none text-1xl placeholder:text-main"
-            />
-            <button
-              onClick={(e) => setRate(e)}
-              className="bg-secondary mt-5 p-2 rounded-xl text-main hover:bg-secondaryHover transition ease-in-out delay-250 text-color outline-none text-1xl"
-            >
-              Сделать ставку
-            </button>
-          </form>
-        </div>
+        <GameController
+          value={value}
+          setValue={setValue}
+          takeRate={takeRate}
+          setRate={setRate}
+        />
       </div>
       {isOpen && <Modal setActive={setIsOpen}>Не хватает денег</Modal>}
+      {bombOpen && <Modal setActive={setBombOpen}>Вы проиграли</Modal>}
     </div>
   );
 };
